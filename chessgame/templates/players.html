@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<br>
+<br>
+<div class="container">
+	<div class="row">
+		
+		<div class="col-sm-3"></div>
+		
+		<div class="col-sm-6">
+			<div class="well">
+				<p>All Past Players:</p>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Username</th>
+							<th scope="col">Wins</th>
+							<th scope="col">Losses</th>
+							<th scope="col">Ties</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in range(data|length) %}
+						<tr>
+							<th scope="row">{{data[i].name}}</th>
+							<td>{{data[i].wins}}</td>
+							<td>{{data[i].losses}}</td>
+							<td>{{data[i].ties}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<br>
+
+			<button type="button" onclick="window.location.href='.'">Back</button>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+</div>
+{% endblock %}

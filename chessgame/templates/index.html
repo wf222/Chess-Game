@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<script>
+		id = {{ id|safe }}
+		turn = {{ turn|tojson }}
+	</script>
+
+
+	
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<p id="black" class="name-text">{{blackName}}</p>
+				<table id="board" class="table table-bordered board">
+
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">A</th>
+							<th scope="col">B</th>
+							<th scope="col">C</th>
+							<th scope="col">D</th>
+							<th scope="col">E</th>
+							<th scope="col">F</th>
+							<th scope="col">G</th>
+							<th scope="col">H</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in range(8) %}
+							<tr>
+								<th class="numbers">{{8 - i}}</th>
+								{% for j in range(8) %}
+									<td onclick="sendLocation(this)">
+										{% if data[(i * 8 + j)].type == ' ' %}
+											<img src="static/blank.png">
+										{% elif data[(i * 8 + j)].type == 'p' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/Pawn_Black.png">
+										{% elif data[(i * 8 + j)].type == 'p' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/Pawn_White.png">
+										{% elif data[(i * 8 + j)].type == 'r' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/Rook_Black.png">
+										{% elif data[(i * 8 + j)].type == 'r' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/Rook_White.png">
+										{% elif data[(i * 8 + j)].type == 'b' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/Bishop_Black.png">
+										{% elif data[(i * 8 + j)].type == 'b' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/Bishop_White.png">
+										{% elif data[(i * 8 + j)].type == 'n' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/Knight_Black.png">
+										{% elif data[(i * 8 + j)].type == 'n' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/Knight_White.png">
+										{% elif data[(i * 8 + j)].type == 'q' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/Queen_Black.png">
+										{% elif data[(i * 8 + j)].type == 'q' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/Queen_White.png">
+										{% elif data[(i * 8 + j)].type == 'k' and data[(i * 8 + j)].color == "black" %}
+											<img src="static/King_Black.png">
+										{% elif data[(i * 8 + j)].type == 'k' and data[(i * 8 + j)].color == "white" %}
+											<img src="static/King_White.png">
+										{% endif %}
+									</td>
+								{% endfor %}
+							</tr>
+						{% endfor %}
+					</tbody>
+					<script>
+						makeCheckeredBoard();
+					</script>
+					
+				</table>
+				<p id="white" class="name-text">{{whiteName}}</p>
+			</div>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4">
+				<br>
+				<div class="well" id="vertically-align-please">
+					<p><u><strong>Helpful Info</strong></u></p>
+					<p>Select a piece:</p><br>
+					<p id="row">Row</p>
+					<p id="column">Column</p>
+					<br>
+					<br>
+					<p>Game ID (Remember this): {{id}}</p>
+					<p id="turn-display">It is currently {{turn}}'s turn</p>
+				</div>
+				<br>
+				<br>
+				<button type="button" onclick="resign();">Resign</button>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

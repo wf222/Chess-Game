@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<div class="container">
+	<br>
+	<br>
+	
+	<div class = "well">
+		<p id="heading"><strong>CS 4 Sign Up</strong><p>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="well">
+				<p class="text-primary" id="p-text">
+					<br>
+					Thank you for choosing to sign up for CS 4! <br><br>
+					It is a wonderful class that teaches many things, including how to
+					make these websites!<br><br>
+					To finalize your signup, please enter some information on your right,
+					and to prove that you are not a robot, please enter this randomly
+					generated number at the bottom: <br><br>
+					{{num}}
+				</p>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="well">
+				<form method="POST" action=".">
+					Full Name: <br/>
+					<input type="text" name="name" required/> <br/>
+					Password: <br/>
+					<input type="password" name="password" required/> <br/>
+					Short Description of Yourself: <br/>
+					<textarea name="description" cols="50" required> </textarea><br/>
+					Grade: <br>
+					<input type="radio" name="grade" value="9" required/> 9th <br/>
+					<input type="radio" name="grade" value="10" /> 10th <br/>
+					<input type="radio" name="grade" value="11" /> 11th <br/>
+					<input type="radio" name="grade" value="12" /> 12th <br/>
+					Prove you're not a Robot:
+					<input type="number" name="robot" required/> <br/>
+					<input type="hidden" name="correctRobot" value="{{num}}" /> <br/>
+					<input type="submit" value="Submit!" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
